@@ -1,5 +1,31 @@
 <!DOCTYPE html>
 <html lang="ru">
+     <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+	createChat({
+		webhookUrl: 'https://cotbaun.app.n8n.cloud/webhook/39e0bc07-cc3a-4807-bedd-310f1a5d3fab/chat',
+
+      showWelcomeScreen: true,
+      defaultLanguage: 'en',
+      initialMessages: [
+        'Здравствуйте! 👋',
+        'Я Милана, ваш помощник из NeuralHub. Чем могу помочь?'
+      ],
+      i18n: {
+        en: {
+          title: 'NeuralHub Чат',
+          subtitle: 'Начните диалог с нашим помощником',
+          footer: '',
+          getStarted: 'Новый разговор',
+          inputPlaceholder: 'Введите ваш вопрос…'
+        }
+      },
+      themeColor: '#A67B5B',
+      showToggleButton: true
+    });
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -308,45 +334,7 @@
         </div>
     </footer>
 
-    <!-- Chat Button -->
-    <button class="chat-button" aria-label="Открыть чат">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-        </svg>
-    </button>
-
-    <!-- Chat Modal -->
-    <div class="chat-modal" id="chatModal">
-        <div class="chat-modal__overlay"></div>
-        <div class="chat-modal__content">
-            <div class="chat-modal__header">
-                <h3 class="chat-modal__title">ИИ-Ассистент</h3>
-                <button class="chat-modal__close" aria-label="Закрыть чат">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="chat-modal__messages" id="chatMessages">
-                <div class="chat-message chat-message--bot">
-                    <div class="chat-message__content">
-                        Привет! Я ИИ-ассистент. Задайте мне любой вопрос о нейросетях!
-                    </div>
-                </div>
-            </div>
-            <div class="chat-modal__input">
-                <input type="text" class="chat-modal__input-field" placeholder="Задайте вопрос о нейросетях..." id="chatInput">
-                <button class="chat-modal__send" id="chatSend">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
+    
     <script src="app.js"></script>
 </body>
 </html>

@@ -1,108 +1,20 @@
 /* app.js – optimized */
 (() => {
+  createChat({
+  webhookUrl: 'https://cotbaun.app.n8n.cloud/webhook/39e0bc07-cc3a-4807-bedd-310f1a5d3fab/chat',
+});
   /* ---------- DOM КЭШ ---------- */
   const $ = (sel, all = false) =>
     all ? document.querySelectorAll(sel) : document.querySelector(sel);
 
   const DOM = {
-    chatBtn:      $('.chat-button'),
-    chatModal:    $('#chatModal'),
-    chatClose:    $('.chat-modal__close'),
-    chatOverlay:  $('.chat-modal__overlay'),
-    chatInput:    $('#chatInput'),
-    chatSend:     $('#chatSend'),
-    chatMessages: $('#chatMessages'),
+
     menuToggle:   $('.header__menu-toggle'),
     nav:          $('.header__nav'),
     navLinks:     $('.nav__link', true),
     heroCTA:      $('.hero__cta'),
     header:       $('.header')
   };
-
-  /* ---------- CHAT ---------- */
-  const BOT_RESPONSES = [
-    'Это интересный вопрос! Здесь будет интеграция с реальным ИИ-агентом.',
-    'Я могу рассказать о типах нейросетей, их применении и перспективах.',
-    'Нейросети — захватывающая область! Что именно вас интересует?',
-    'Отличный вопрос о машинном обучении! Скоро будет полноценный ассистент.',
-    'Искусственный интеллект растёт быстро. Хотите узнать о применениях?',
-    'Когда подключится настоящий ассистент, ответы станут ещё полнее.'
-  ];
-
-  const EASTER_EGGS = {
-    привет: 'Привет! Рад познакомиться! Чем могу помочь?',
-    'как дела': 'У меня всё отлично! А у вас?',
-    'что такое нейросеть':
-      'Нейросеть — вычислительная система, вдохновлённая мозгом.',
-    gpt:
-      'GPT — трансформерная архитектура, лежащая в основе языковых моделей.',
-    'будущее ии':
-      'Будущее ИИ перспективно! AGI к 2025-му, мультимодальность к 2027-му.'
-  };
-
-  const Chat = (() => {
-    const open = () => {
-      DOM.chatModal.classList.add('active');
-      DOM.chatInput.focus();
-      trapFocus(DOM.chatModal);
-    };
-
-    const close = () => DOM.chatModal.classList.remove('active');
-
-    const addMessage = (text, fromUser = false) => {
-      const wrap = document.createElement('div');
-      wrap.className = `chat-message ${
-        fromUser ? 'chat-message--user' : 'chat-message--bot'
-      }`;
-      wrap.innerHTML = `<div class="chat-message__content">${text}</div>`;
-      DOM.chatMessages.append(wrap);
-      DOM.chatMessages.scrollTop = DOM.chatMessages.scrollHeight;
-    };
-
-    const typingIndicator = {
-      show() {
-        const html = `
-          <div id="typing" class="chat-message chat-message--bot">
-            <div class="chat-message__content"><span>•</span><span>•</span><span>•</span></div>
-          </div>`;
-        DOM.chatMessages.insertAdjacentHTML('beforeend', html);
-        DOM.chatMessages.scrollTop = DOM.chatMessages.scrollHeight;
-      },
-      hide() {
-        $('#typing')?.remove();
-      }
-    };
-
-    const reply = msg => {
-      const key = Object.keys(EASTER_EGGS).find(k => msg.includes(k));
-      return key ? EASTER_EGGS[key] : BOT_RESPONSES[Math.random() * BOT_RESPONSES.length | 0];
-    };
-
-    const sendMessage = () => {
-      const text = DOM.chatInput.value.trim();
-      if (!text) return;
-
-      addMessage(text, true);
-      DOM.chatInput.value = '';
-      DOM.chatSend.disabled = true;
-      typingIndicator.show();
-
-      setTimeout(() => {
-        typingIndicator.hide();
-        addMessage(reply(text.toLowerCase()));
-        DOM.chatSend.disabled = false;
-      }, 1500);
-    };
-
-    /* events */
-    DOM.chatBtn.addEventListener('click', open);
-    [DOM.chatClose, DOM.chatOverlay].forEach(el => el.addEventListener('click', close));
-    DOM.chatSend.addEventListener('click', sendMessage);
-    DOM.chatInput.addEventListener('keydown', e => e.key === 'Enter' && sendMessage());
-    document.addEventListener('keydown', e => e.key === 'Escape' && close());
-
-    return { open, close };
-  })();
 
   /* ---------- NAVIGATION ---------- */
   const Navigation = (() => {
