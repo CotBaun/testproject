@@ -1537,3 +1537,18 @@ body {
     margin-left: 60px !important;
   }
 }
+/* плавное появление при скролле */
+.pre-view { opacity: 0; transform: translateY(30px); transition: .6s ease; }
+.in-view { opacity: 1; transform: none; }
+
+/* мобильное меню */
+.nav--open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--color-surface);
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  padding: 20px;
+  z-index: 1000;
+}
