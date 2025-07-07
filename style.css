@@ -1214,7 +1214,7 @@ body {
 
 /* Footer */
 .footer {
-  background: var(--color-accent-bold);
+  background: var(--color-accent-dark);
   color: #fff;
   padding: 60px 0 20px;
 }
